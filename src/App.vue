@@ -35,7 +35,7 @@
                 <cc-logo></cc-logo>
             </main>
 
-            <v-footer class="pa-3" style="background-color: #0f110f; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
+            <v-footer fixed class="pa-3" style="background-color: #0f110f; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
                 <v-spacer></v-spacer>
                 Made with
                 &nbsp;
