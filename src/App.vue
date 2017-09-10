@@ -20,22 +20,18 @@
                     <v-icon class="fa fa-github"></v-icon>
                 </v-btn>
 
-                <!--
-                <v-btn icon style="color: #ff154b;">
-                    <v-icon>favorite</v-icon>
-                </v-btn>
-                -->
-
                 <v-btn icon>
                     <v-icon>more_vert</v-icon>
                 </v-btn>
             </v-toolbar>
 
             <main>
-                <cc-logo></cc-logo>
+                <cc-logo id="logo"></cc-logo>
+
             </main>
 
             <v-footer fixed class="pa-3" style="background-color: #0f110f; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
+
                 <v-spacer></v-spacer>
                 Made with
                 &nbsp;
@@ -54,10 +50,13 @@
     import { VueTyper } from 'vue-typer'
     import 'particles.js'
     import CCLogo from './components/Logo'
+    import CCConsole from './components/ConsoleEffect'
+
     export default {
         components: {
             CCLogo,
-            VueTyper
+            VueTyper,
+            CCConsole
         },
 
         data () {
@@ -100,11 +99,13 @@
     }
 
     .all {
-        //background: linear-gradient(#2f6c89, #830e26);
+        //background: linear-gradient(#2f6c89, #108555);
         //background-image: linear-gradient(#088283, #0f110f 90%), url(../public/noise.gif);
         //background-image: linear-gradient(#249987, #0f110f 90%);
         background-image: linear-gradient(#1bc08f, #112026);
         //background: linear-gradient(rgb(52,151,154), #0f110f);
+        //background: linear-gradient(rgb(52,151,154), #000000);
+
         //#249987
     }
     //#ab1b5e
@@ -113,14 +114,8 @@
         font-weight: 400;
     }
 
-
-    .chimp-name {
-        color: white;
-        font-size: 80px;
-        font-weight: 500;
-        font-family: Quicksand,Roboto,serif;
-        text-shadow: 0px 4px #030907;
-        letter-spacing: -5px;
+    #logo {
+        margin-top: 120px;
     }
 
     #particles-js {

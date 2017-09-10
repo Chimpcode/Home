@@ -4,7 +4,9 @@ import Vuetify from 'vuetify'
 import './stylus/main.styl'
 
 
-Vue.component('cc-logo', require('./components/Logo.vue'));
+Vue.component('cc-logo', require('./components/Logo.vue'))
+Vue.component('cc-console', require('./components/ConsoleEffect.vue'))
+
 Vue.use(Vuetify)
 
 new Vue({
