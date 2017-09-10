@@ -4,7 +4,7 @@
 
         </div>
         <v-app class="all blue-grey darken-4">
-            <v-toolbar fixed class="elevation-5" :dark="true" style="background: #1f1f26">
+            <v-toolbar class="elevation-5" :dark="true" style="background: transparent">
                 <v-toolbar-title class="toolbar-title">
                     <!--<img src="../public/logoccwhite.png" style="width: auto; height: 40px"/>-->
                     Chimpcode
