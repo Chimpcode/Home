@@ -14,23 +14,33 @@
 
                 <v-btn flat dark class="opts">Se parte de nosotros</v-btn>
 
-                <v-btn outline style="color: white">
+                <v-btn outline style="color: #22dea1">
                     Ingresa
                     &nbsp;
                     <v-icon class="fa fa-github"></v-icon>
                 </v-btn>
 
+                <!--
                 <v-btn icon>
                     <v-icon>more_vert</v-icon>
                 </v-btn>
+                -->
             </v-toolbar>
 
             <main>
-                <cc-logo id="logo"></cc-logo>
+                <v-container fluid>
+                    <cc-logo id="logo"></cc-logo>
+                    <v-layout>
+                        <v-flex xs12>
+                            <h2> Hello coder</h2>
+                        </v-flex>
+
+                    </v-layout>
+                </v-container>
 
             </main>
 
-            <v-footer fixed class="pa-3" style="background-color: #0f110f; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
+            <v-footer fixed class="pa-3" style="background-color: #1b1b21; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
 
                 <v-spacer></v-spacer>
                 Made with
@@ -109,6 +119,7 @@
         //background-image: linear-gradient(#22dea1, #1f1f26);
         background: #1f1f26;
         //#249987
+
     }
     //#ab1b5e
 
