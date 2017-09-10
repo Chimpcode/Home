@@ -23,7 +23,7 @@
 
 <style>
     .chimp-name {
-        color: white;
+        color: #22dea1;
         font-size: 80px;
         font-weight: 500;
         font-family: Quicksand,Roboto,serif;

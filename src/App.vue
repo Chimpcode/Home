@@ -76,6 +76,7 @@
 <style lang="scss">
     .toolbar-title {
         font-family: Quicksand,Roboto,serif;
+        color: #22dea1;
         //font-size: 20px;
     }
 
@@ -102,10 +103,11 @@
         //background: linear-gradient(#2f6c89, #108555);
         //background-image: linear-gradient(#088283, #0f110f 90%), url(../public/noise.gif);
         //background-image: linear-gradient(#249987, #0f110f 90%);
-        background-image: linear-gradient(#1bc08f, #112026);
+        //background-image: linear-gradient(#1bc08f, #112026);
         //background: linear-gradient(rgb(52,151,154), #0f110f);
         //background: linear-gradient(rgb(52,151,154), #000000);
-
+        //background-image: linear-gradient(#22dea1, #1f1f26);
+        background: #1f1f26;
         //#249987
     }
     //#ab1b5e
