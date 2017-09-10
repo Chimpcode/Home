@@ -3,6 +3,8 @@ import App from './App.vue'
 import Vuetify from 'vuetify'
 import './stylus/main.styl'
 
+
+Vue.component('cc-logo', require('./components/Logo.vue'));
 Vue.use(Vuetify)
 
 new Vue({
