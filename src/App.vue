@@ -32,19 +32,33 @@
                 <v-container fluid>
                     <cc-logo id="logo"></cc-logo>
 
-                    <v-layout text-xs-center>
+                    <v-layout style="margin-top: 200px;" text-xs-center>
                         <v-flex xs4>
-                            <img src="../public/programming.png"/>
+                            <img class="icon-ref" src="../public/programming.png"/>
                         </v-flex>
                         <v-flex xs4>
-                            <img src="../public/programming.png"/>
+                            <img class="icon-ref" src="../public/fork.png"/>
                         </v-flex>
                         <v-flex xs4>
-                            <img src="../public/programming.png"/>
+                            <img class="icon-ref" src="../public/innovative.png"/>
                         </v-flex>
-
 
                     </v-layout>
+
+                    <v-layout class="promotion-text" style="margin-top: 10px;" text-xs-center>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+
+                    </v-layout>
+
+
 
                 </v-container>
 
@@ -156,9 +170,13 @@
         z-index:0;
     }
 
-    .promotion-text{
+    .promotion-text {
         font-family: Quicksand,Roboto,serif;
         color: white;
+    }
+    .icon-ref {
+        width: auto;
+        height: 100px;
     }
 
 </style>
