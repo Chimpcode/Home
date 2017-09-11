@@ -12,6 +12,7 @@
                 <v-spacer></v-spacer>
 
 
+                <v-btn flat dark class="opts">para clientes</v-btn>
                 <v-btn flat dark class="opts">Se parte de nosotros</v-btn>
 
                 <v-btn outline style="color: #22dea1">
@@ -30,17 +31,40 @@
             <main>
                 <v-container fluid>
                     <cc-logo id="logo"></cc-logo>
-                    <v-layout>
-                        <v-flex xs12>
-                            <h2> Hello coder</h2>
+
+                    <v-layout style="margin-top: 200px;" text-xs-center>
+                        <v-flex xs4>
+                            <img class="icon-ref" src="../public/programming.png"/>
+                        </v-flex>
+                        <v-flex xs4>
+                            <img class="icon-ref" src="../public/fork.png"/>
+                        </v-flex>
+                        <v-flex xs4>
+                            <img class="icon-ref" src="../public/innovative.png"/>
                         </v-flex>
 
                     </v-layout>
+
+                    <v-layout class="promotion-text" style="margin-top: 10px;" text-xs-center>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+                        <v-flex xs4 class="text-xs-center px-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
+                        </v-flex>
+
+                    </v-layout>
+
+
+
                 </v-container>
 
             </main>
 
-            <v-footer fixed class="pa-3" style="background-color: #1b1b21; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
+            <v-footer class="pa-3" style="background-color: #1b1b21; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
 
                 <v-spacer></v-spacer>
                 Made with
@@ -136,6 +160,7 @@
         width: 100%;
         height: 100%;
     }
+
     #noise {
         position: absolute;
         width: 100%;
@@ -143,6 +168,15 @@
         opacity: 0.05;
         background: url(../public/noise.gif) repeat;
         z-index:0;
+    }
+
+    .promotion-text {
+        font-family: Quicksand,Roboto,serif;
+        color: white;
+    }
+    .icon-ref {
+        width: auto;
+        height: 100px;
     }
 
 </style>
