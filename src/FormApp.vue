@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div id="noise">
-
-        </div>
         <v-app class="all blue-grey darken-4">
+            <div id="noise">
+
+            </div>
             <v-toolbar class="elevation-5" :dark="true" style="background: transparent">
                 <v-toolbar-title class="toolbar-title">
                     <!--<img src="../public/logoccwhite.png" style="width: auto; height: 40px"/>-->
@@ -31,34 +31,30 @@
             <main>
                 <v-container>
                     <v-layout row wrap>
-                        <v-flex xs12 sm4 offset-sm4>
-                            <v-form v-model="valid" ref="form" class="form-border">
-                                <v-text-field
-                                  dark
-                                  label="What the hell are you?"
-                                  v-model="name"
-                                  :rules="nameRules"
-                                  required
-                                ></v-text-field>
-                                <v-text-field
-                                    dark
-                                  label="E-mail"
-                                  v-model="email"
-                                  :rules="emailRules"
-                                  required
-                                ></v-text-field>
-                                <v-select
-                                    dark
-                                  label="Eres... ?"
-                                  v-model="select"
-                                  :items="items"
-                                  :rules="[(v) => !!v || 'Item is required']"
-                                  required
-                                ></v-select>
-
-                                <v-btn @click="submit" :class="{ 'teal lighten-2': valid, red: !valid }">submit</v-btn>
-                                <v-btn @click="clear">clear</v-btn>
-                            </v-form>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <div class="terminal">
+                                    <h4 class="form-title">Unete</h4>
+                                    <div class="form-container">
+                                        <label class="label-form" for="Name">Nombre: </label>
+                                        <input class="input-form" type="text" name="Name" value="" autofocus/>
+                                    </div>
+                                    <div class="form-container">
+                                        <label class="label-form" for="Email">Email: </label>
+                                        <input class="input-form" type="email" name="Email" value=""/>
+                                    </div>
+                                    <div class="form-container">
+                                        <label class="label-form" for="Email">Are you a...
+                                            <br>(1) Developer
+                                            <br>(2) Designer
+                                            <br>(3) Both
+                                            <br>:
+                                        </label>
+                                        <input class="input-form" type="email" name="Email" value=""/>
+                                    </div>
+                                    <div class="submit-button-container">
+                                        <button type="button" name="button" class="submit-button">ENTER</button>
+                                    </div>
+                            </div>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -82,6 +78,8 @@
 </template>
 
 <script>
+
+    import ccInput from './components/ccInput'
     import { VueTyper } from 'vue-typer'
     import 'particles.js'
     import CCLogo from './components/Logo'
@@ -91,27 +89,12 @@
         components: {
             CCLogo,
             VueTyper,
-            CCConsole
+            CCConsole,
+            ccInput
         },
 
         data () {
             return {
-                valid: false,
-                name: '',
-                nameRules: [
-                  (v) => !!v || 'Nombre es necesario'
-                ],
-                email: '',
-                emailRules: [
-                  (v) => !!v || 'E-mail is required',
-                  (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-                ],
-                select: null,
-                items: [
-                  'Developer (Heavy)',
-                  'Developer (Beginner)',
-                  'Disenador'
-                ],
             }
         },
         methods: {
@@ -197,6 +180,7 @@
         z-index:0;
     }
 
+
     .promotion-text {
         font-family: Quicksand,Roboto,serif;
         color: white;
@@ -209,4 +193,44 @@
         border: 1px #34979a solid;
         border-radius: 3px;
         padding: 20px;
+    .form-container
+        margin-top: 12px
+        width: 100%
+    .terminal
+        background-color: rgba(0, 0, 0, 0.67)
+        padding: 3em
+        margin: 2em
+        border-radius: 10px
+    .terminal > h4
+        text-align: center
+    .form-container > label, input, h4
+        color: #22dea1
+        font-family: 'VT323', monospace;
+    .form-container > label, input
+        font-size: 24px
+    .form-container > label
+        width: 30%
+    .input-form
+        padding: 3px
+        width: 70%
+    .input-form:focus
+        outline: none
+    .submit-button-container
+        padding-top: 12px
+        text-align: center;
+    .submit-button
+        font-family: 'VT323', monospace;
+        width: 200px;
+
+        box-shadow: 3px 3px 0px #8ed9d2;
+        text-indent: 70px;
+        background: #22dea1;
+        text-transform: uppercase;
+        color: #31220b;
+        text-shadow: 1px 2px 0px rgba(255,255,255,.5);
+        font-size: 28px;
+        height: 64px;
+        line-height: 62px;
+        text-align: left;
+
 </style>
