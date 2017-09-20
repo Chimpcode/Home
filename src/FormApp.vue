@@ -1,9 +1,8 @@
 <template>
     <div>
+        <!-- <div id="noise2">
+        </div> -->
         <v-app class="all blue-grey darken-4">
-            <div id="noise">
-
-            </div>
             <v-toolbar class="elevation-5" :dark="true" style="background: transparent">
                 <v-toolbar-title class="toolbar-title">
                     <!--<img src="../public/logoccwhite.png" style="width: auto; height: 40px"/>-->
@@ -27,32 +26,42 @@
                 </v-btn>
                 -->
             </v-toolbar>
-
-            <main>
+            <main class="">
                 <v-container>
                     <v-layout row wrap>
                         <v-flex xs12 sm6 offset-sm3>
+
                             <div class="terminal">
-                                    <h4 class="form-title">Unete</h4>
+                                    <h4 class="form-title">S&eacute; parte de nuestra familia!</h4>
                                     <div class="form-container">
-                                        <label class="label-form" for="Name">Nombre: </label>
-                                        <input class="input-form" type="text" name="Name" value="" autofocus/>
+                                        <label class="label-form" for="Name">nombre: </label>
+                                        <input class="input-form" type="text" name="Name" v-model="pedido.name" autofocus/>
                                     </div>
                                     <div class="form-container">
-                                        <label class="label-form" for="Email">Email: </label>
-                                        <input class="input-form" type="email" name="Email" value=""/>
+                                        <label class="label-form" for="Email">e-m@il: </label>
+                                        <input class="input-form" type="email" name="Email" v-model="pedido.email"/>
                                     </div>
                                     <div class="form-container">
-                                        <label class="label-form" for="Email">Are you a...
-                                            <br>(1) Developer
-                                            <br>(2) Designer
-                                            <br>(3) Both
+                                        <label class="label-form">Are you a...</label><br>
+                                    </div>
+                                    <div class="form-container kind-alternatives" v-for="(kind, i) in kind_data" :key='i'>
+
+                                        <label for="">{{ kind.name }}...</label>
+                                        <span class="checkbox-form" v-on:click="checkKind(kind.name, i)">
+                                            [ {{ kind.value === true? 'x': '_' }} ]
+                                        </span>
+                                        <!-- <label class="label-form" for="Kind">Are you a...
+                                            <br>(1) Frontend Developer
+                                            <br>(2) Backend Developer
+                                            <br>(3) UI/UX Designer
+                                            <br>(4) FullStack Developer
+                                            <br>(5) Beginner
                                             <br>:
                                         </label>
-                                        <input class="input-form" type="email" name="Email" value=""/>
+                                        <input class="input-form" type="number" name="Kind" value=""/> -->
                                     </div>
                                     <div class="submit-button-container">
-                                        <button type="button" name="button" class="submit-button">ENTER</button>
+                                        <button type="button" name="button" class="submit-button" v-on:click="submit">ENTER</button>
                                     </div>
                             </div>
                         </v-flex>
@@ -95,17 +104,33 @@
 
         data () {
             return {
+                pedido: {
+                    name:"",
+                    email:"",
+                    kind: []
+                },
+                kind_data: [
+                    { name: "(1) Frontend Developer", value: false },
+                    { name: "(2) Backend Developer", value: false },
+                    { name: "(3) UI/UX Designer", value: false },
+                    { name: "(4) FullStack Developer", value: false },
+                    { name: "(5) Beginner", value: false }
+                ]
             }
         },
         methods: {
-          submit () {
-            if (this.$refs.form.validate()) {
-              this.$refs.form.$el.submit()
+            checkKind: function (kindName, index) {
+                this.kind_data[index].value = !this.kind_data[index].value
+            },
+            submit: function () {
+                var self = this
+                this.kind_data.map(function (kind) {
+                    if (kind.value === true) {
+                        self.pedido.kind.push(kind.name)
+                    }
+                })
+                console.log(this.pedido);
             }
-          },
-          clear () {
-            this.$refs.form.reset()
-          }
         },
         mounted () {
             // particlesJS.load('particles-js', '../public/particlesjs-config1.json', function() {
@@ -151,7 +176,10 @@
         //background: linear-gradient(rgb(52,151,154), #0f110f);
         //background: linear-gradient(rgb(52,151,154), #000000);
         //background-image: linear-gradient(#22dea1, #1f1f26);
-        background: #1f1f26;
+
+        // background-color: rgba(#1f1f26, 0.57);
+        background: url("../public/noise.gif") repeat;
+        background-blend-mode: multiply;
         //#249987
 
     }
@@ -180,6 +208,18 @@
         z-index:0;
     }
 
+    .in-front-of {
+        // position: absolute;
+        z-index:1;
+    }
+    #noise2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        background: url(../public/noise.gif) repeat;
+        z-index:3;
+    }
 
     .promotion-text {
         font-family: Quicksand,Roboto,serif;
@@ -197,7 +237,7 @@
         margin-top: 12px
         width: 100%
     .terminal
-        background-color: rgba(0, 0, 0, 0.67)
+        background-color: rgba(0, 0, 0, 0.51)
         padding: 3em
         margin: 2em
         border-radius: 10px
@@ -205,7 +245,7 @@
         text-align: center
     .form-container > label, input, h4
         color: #22dea1
-        font-family: 'VT323', monospace;
+        font-family: 'Share Tech Mono', monospace;
     .form-container > label, input
         font-size: 24px
     .form-container > label
@@ -215,22 +255,31 @@
         width: 70%
     .input-form:focus
         outline: none
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    .checkbox-form
+        color: #22dea1
+    .kind-alternatives
+        padding-left: 2em
+    .kind-alternatives > label, span
+        font-size: 18px
     .submit-button-container
-        padding-top: 12px
+        padding-top: 60px
         text-align: center;
     .submit-button
-        font-family: 'VT323', monospace;
-        width: 200px;
-
+        font-family: 'Share Tech Mono', monospace;
+        width: 150px;
         box-shadow: 3px 3px 0px #8ed9d2;
-        text-indent: 70px;
         background: #22dea1;
         text-transform: uppercase;
         color: #31220b;
         text-shadow: 1px 2px 0px rgba(255,255,255,.5);
-        font-size: 28px;
-        height: 64px;
-        line-height: 62px;
-        text-align: left;
+        font-size: 24px;
+        height: 48px;
+        text-align: center;
 
 </style>
