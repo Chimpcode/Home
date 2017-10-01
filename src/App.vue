@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div id="noise">
+        <!-- <div id="noise">
 
-        </div>
+        </div> -->
         <v-app class="all blue-grey darken-4">
             <v-toolbar class="elevation-5" :dark="true" style="background: transparent">
                 <v-toolbar-title class="toolbar-title">
@@ -13,7 +13,7 @@
 
 
                 <v-btn flat dark class="opts">para clientes</v-btn>
-                <v-btn flat dark class="opts">Se parte de nosotros</v-btn>
+                <v-btn flat dark class="opts" @click.native.stop="dialog_form = !dialog_form">Se parte de nosotros</v-btn>
 
                 <v-btn outline style="color: #22dea1">
                     Ingresa
@@ -63,6 +63,22 @@
                 </v-container>
 
             </main>
+            <v-dialog v-model="dialog_form" 
+                    fullscreen 
+                    transition="dialog-bottom-transition" 
+                    :overlay="false">
+
+                    <div>
+                        <form-body 
+                            class="dialog_background" 
+                            :dialog="dialog_form" 
+                            @clicked="onClickCloseDialog">
+                        </form-body>
+                    </div>
+                <!-- <v-card>
+                    <v-card-text> HOLA </v-card-text>
+                </v-card> -->
+            </v-dialog>
 
             <v-footer class="pa-3" style="background-color: #1b1b21; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
 
@@ -85,24 +101,38 @@
     import 'particles.js'
     import CCLogo from './components/Logo'
     import CCConsole from './components/ConsoleEffect'
+    import FormBody from './components/FormBody'
 
     export default {
         components: {
             CCLogo,
             VueTyper,
-            CCConsole
+            CCConsole,
+            FormBody
         },
 
         data () {
             return {
+                dialog_form: false
+            }
+        },
 
+        methods: {
+            goToForm: function () {
+                window.scrollTo(0,1000);
+                // document.animate({
+
+                // })
+            },
+            onClickCloseDialog: function (value) {
+                this.dialog_form = value
             }
         },
 
         mounted () {
-            particlesJS.load('particles-js', '../public/particlesjs-config1.json', function() {
-                console.log('callback - particles.js config loaded');
-            });
+            // particlesJS.load('particles-js', '../public/particlesjs-config1.json', function() {
+            //     console.log('callback - particles.js config loaded');
+            // });
         }
     }
 </script>
@@ -141,11 +171,19 @@
         //background: linear-gradient(rgb(52,151,154), #0f110f);
         //background: linear-gradient(rgb(52,151,154), #000000);
         //background-image: linear-gradient(#22dea1, #1f1f26);
-        background: #1f1f26;
+        // background: #1f1f26;
         //#249987
 
+        background: url("../public/noise.gif") repeat;
+        background-blend-mode: multiply;
     }
     //#ab1b5e
+
+    .dialog_background {
+        background: #0f1215
+        // background: url("../public/noise.gif") repeat;
+        // background-blend-mode: multiply;
+    }
 
     .opts {
         font-weight: 400;

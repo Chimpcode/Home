@@ -12,5 +12,5 @@ Vue.use(Vuetify)
 
 new Vue({
   el: '#app',
-  render: h => h(FormApp)
+  render: h => h(App)
 })

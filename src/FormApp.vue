@@ -35,11 +35,13 @@
                                     <h4 class="form-title">S&eacute; parte de nuestra familia!</h4>
                                     <div class="form-container">
                                         <label class="label-form" for="Name">nombre: </label>
-                                        <input class="input-form" type="text" name="Name" v-model="pedido.name" autofocus/>
+                                        <input class="input-form" type="text" name="Name"
+                                                placeholder="_" v-model="pedido.name" autofocus/>
                                     </div>
                                     <div class="form-container">
-                                        <label class="label-form" for="Email">e-m@il: </label>
-                                        <input class="input-form" type="email" name="Email" v-model="pedido.email"/>
+                                        <label class="label-form" for="Email">e-mail: </label>
+                                        <input class="input-form" type="email" name="Email"
+                                                placeholder="_" v-model="pedido.email"/>
                                     </div>
                                     <div class="form-container">
                                         <label class="label-form">Are you a...</label><br>
@@ -59,6 +61,19 @@
                                             <br>:
                                         </label>
                                         <input class="input-form" type="number" name="Kind" value=""/> -->
+                                    </div>
+                                    <div class="form-container">
+                                        <label class="label-form" for="Experiencia">Empresa anterior: </label>
+                                        <input class="input-form" type="email" name="Experiencia"
+                                                placeholder="_" v-model="pedido.empresa_anterior"/>
+                                    </div>
+                                    <div class="form-container">
+                                        <label class="label-form" for="Experiencia">Ni: </label>
+                                        <input class="input-form" 
+                                                type="email" 
+                                                name="Experiencia" 
+                                                placeholder="_"
+                                                v-model="pedido.empresa_anterior"/>
                                     </div>
                                     <div class="submit-button-container">
                                         <button type="button" name="button" class="submit-button" v-on:click="submit">ENTER</button>
@@ -281,5 +296,6 @@
         font-size: 24px;
         height: 48px;
         text-align: center;
-
+    ::-webkit-input-placeholder
+        color: #1fb785
 </style>
