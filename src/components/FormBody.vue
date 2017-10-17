@@ -14,17 +14,22 @@
                     <div class="terminal">
                             <h4 class="form-title">S&eacute; parte de nuestra familia!</h4>
                             <div class="form-container">
-                                <label class="label-form" for="Name">nombre: </label>
+                                <label class="label-form" for="Name">Nombre: </label>
                                 <input class="input-form" type="text" name="Name"
-                                        placeholder="_" v-model="pedido.name" autofocus/>
+                                        placeholder="_" v-model="subscriptor.name" autofocus/>
                             </div>
                             <div class="form-container">
-                                <label class="label-form" for="Email">e-mail: </label>
+                                <label class="label-form" for="Email">E-mail: </label>
                                 <input class="input-form" type="email" name="Email"
-                                        placeholder="_" v-model="pedido.email"/>
+                                        placeholder="_" v-model="subscriptor.email"/>
                             </div>
                             <div class="form-container">
-                                <label class="label-form">Are you a...</label><br>
+                                <label class="label-form" for="Phone">Celular: </label>
+                                <input class="input-form" type="text" name="Phone"
+                                        placeholder="_" v-model="subscriptor.phonenumber"/>
+                            </div>
+                            <div class="form-container">
+                                <label class="label-form">Te desempe&ntilde;as como...</label><br>
                             </div>
                             <div class="form-container kind-alternatives" v-for="(kind, i) in kind_data" :key='i'>
 
@@ -43,17 +48,17 @@
                                 <input class="input-form" type="number" name="Kind" value=""/> -->
                             </div>
                             <div class="form-container">
-                                <label class="label-form">Ultima experiencia...</label><br>
+                                <label class="label-form">&Uacute;ltima experiencia...</label><br>
                             </div>
                             <div class="form-container">
                                 <label class="label-form" for="empresa_anterior">Empresa: </label>
                                 <input class="input-form" type="text" name="empresa_anterior"
-                                        placeholder="_" v-model="pedido.empresa_anterior"/>
+                                        placeholder="_" v-model="subscriptor.lastjob"/>
                             </div>
                             <div class="form-container">
                                 <label class="label-form" for="labor_realizado">Labor realizado: </label>
                                 <input class="input-form" type="text" name="labor_realizado"
-                                        placeholder="_" v-model="pedido.labor_realizado"/>
+                                        placeholder="_" v-model="subscriptor.job"/>
                             </div>
                             <div class="form-container">
                                 <label class="label-form">Fecha: </label>
@@ -61,23 +66,22 @@
                                         type="text" 
                                         size="2"
                                         maxlength="2"
-                                        name="pedido_fecha_dd"
-                                        placeholder="dd" v-model="pedido.fecha_dd"/>
+                                        name="subscriptor_fecha_dd"
+                                        placeholder="dd" v-model="subscriptor.fecha_dd"/>
                                 <span class="teal-text"> / </span>
                                 <input class="input-form-date"
                                         type="text" 
                                         size="2"
                                         maxlength="2"
-                                        name="pedido_fecha_mm"
-                                        placeholder="mm" v-model="pedido.fecha_mm"/>
+                                        name="subscriptor_fecha_mm"
+                                        placeholder="mm" v-model="subscriptor.fecha_mm"/>
                                 <span class="teal-text"> / </span>
                                 <input class="input-form-date" 
-                                        name="pedido_fecha_yy"
+                                        name="subscriptor_fecha_yy"
                                         placeholder="yy" 
                                         type="text" 
                                         size="2"
-                                        maxlength="2"
-                                        v-model="pedido.fecha_yy"/>
+                                        maxlength="2" v-model="subscriptor.fecha_yy"/>
                             </div>
 
                             <div class="submit-button-container">
@@ -106,7 +110,7 @@
 
         data () {
             return {
-                pedido: {
+                subscriptor: {
                     name:"",
                     email:"",
                     kind: []
@@ -129,12 +133,44 @@
             },
             submit: function () {
                 var self = this
+
+
+                this.subscriptor.sincejob = ""+
+                    this.subscriptor.fecha_mm + "/" +
+                    this.subscriptor.fecha_dd + "/" +
+                    this.subscriptor.fecha_yy
+
+                delete this.subscriptor.fecha_mm
+                delete this.subscriptor.fecha_dd
+                delete this.subscriptor.fecha_yy
+
                 this.kind_data.map(function (kind) {
                     if (kind.value === true) {
-                        self.pedido.kind.push(kind.name)
+                        self.subscriptor.kind.push(kind.name)
                     }
                 })
-                console.log(this.pedido);
+                // console.log(process.env.NODE_ENV)
+                if (process.env.NODE_ENV === 'development') {
+                    
+                    this.$http.post('http://localhost:8079/developers', this.subscriptor)
+                    .then(function (res) {
+                        
+                        // res.data.message
+                    })
+                    .catch(function (err) {
+                        
+                    })
+                } else {
+                    this.$http.post('http://localhost:8079/developers', this.subscriptor)
+                    .then(function (res) {
+                        
+                        // res.data.message
+                    })
+                    .catch(function (err) {
+                        
+                    })
+                }              
+                console.log(this.subscriptor);
             }
         },
         mounted () {
