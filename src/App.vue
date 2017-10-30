@@ -2,7 +2,7 @@
     <div>
         <v-app >
             <div class="all blue-grey darken-4" id="intro">
-                <v-toolbar class="elevation-0 cc-toolbar" :dark="true" style="background: transparent">
+                <v-toolbar class="elevation-0 cc-toolbar" :dark="true" :class="[transparentOn ? 'transparent-toolbar' : 'solid-toolbar']" :fixed="istoolbarfixed">
                     <v-toolbar-title class="toolbar-title">
                         Chimpcode
                     </v-toolbar-title>
@@ -47,14 +47,14 @@
                             id est laborum</p>
                         </div>
                     </v-flex>
-                    <v-flex xs12 sm6 class="pa-3">
+                    <v-flex xs12 sm6 class="black white--text pa-3">
                         <h3 class="vertical-center text-xs-center px-5" style="line-height: 58px;">100% Software personalizado</h3>
                     </v-flex>
                 </v-layout>
             </v-container>
             <v-container fluid style="padding:0px !important" class="brand-font">
                 <v-layout row wrap>
-                    <v-flex xs12 sm6 class="py-3 px-5 block-content">
+                    <v-flex xs12 sm6 class="black white--text py-3 px-5 block-content">
                         <div class="vertical-center">
                         <h5><strong>Lorem ipsum dolor sit amet</strong></h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
@@ -95,7 +95,9 @@
         data () {
             return {
                 sidebar: false,
-                dialog_form: false
+                dialog_form: false,
+                istoolbarfixed: true,
+                transparentOn: true
             }
         },
 
@@ -111,7 +113,23 @@
             },
             onSidebarChange: function(value) {
                 this.sidebar = value
+            },
+            handleScroll: function(e) {
+                if (window.scrollY > 100) {
+                    console.log("> 100")
+                    this.transparentOn = false
+                } else {
+                    console.log(" no")
+                    this.transparentOn = true
+                }
             }
+        },
+
+        created: function () {
+            window.addEventListener('scroll', this.handleScroll);
+        },
+        destroyed: function () {
+            window.removeEventListener('scroll', this.handleScroll);
         },
 
         mounted () {
@@ -140,6 +158,12 @@
         margin-left: 3px;
     }
 
+    .transparent-toolbar {
+        background: transparent !important;
+    }
+    .solid-toolbar {
+        background: black !important;
+    }
     .vue-typer {
         font-size: 60px;
         font-weight: 100;

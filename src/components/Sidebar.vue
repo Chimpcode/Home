@@ -81,6 +81,7 @@ export default {
   bottom: 0px
   right: 0px
 
+  z-index: 9999
   padding: 16px
   background: #111F32
 
