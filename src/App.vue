@@ -9,6 +9,7 @@
                     <!--<img src="../public/logoccwhite.png" style="width: auto; height: 40px"/>-->
                     Chimpcode
                 </v-toolbar-title>
+                <span class="dot-title"> &#x25cf;</span>
                 <v-spacer></v-spacer>
 
 
@@ -34,37 +35,8 @@
             </v-toolbar>
 
             <main>
-                <v-container fluid>
+                <v-container>
                     <cc-logo id="logo"></cc-logo>
-
-                    <v-layout style="margin-top: 200px;" text-xs-center>
-                        <v-flex xs4>
-                            <img class="icon-ref" src="../public/programming.png"/>
-                        </v-flex>
-                        <v-flex xs4>
-                            <img class="icon-ref" src="../public/fork.png"/>
-                        </v-flex>
-                        <v-flex xs4>
-                            <img class="icon-ref" src="../public/innovative.png"/>
-                        </v-flex>
-
-                    </v-layout>
-
-                    <v-layout class="promotion-text" style="margin-top: 10px;" text-xs-center>
-                        <v-flex xs4 class="text-xs-center px-5">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
-                        </v-flex>
-                        <v-flex xs4 class="text-xs-center px-5">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
-                        </v-flex>
-                        <v-flex xs4 class="text-xs-center px-5">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur.
-                        </v-flex>
-
-                    </v-layout>
-
-
-
                 </v-container>
 
             </main>
@@ -134,8 +106,16 @@
 <style lang="scss">
     .toolbar-title {
         font-family: Quicksand,Roboto,serif;
-        color: #22dea1;
+        color: white;
+        letter-spacing: -1px;
         //font-size: 20px;
+    }
+    .dot-title {
+        color: #22dea1;
+        font-size:14px;
+        font-weight: bold;
+        margin-bottom: -9px;
+        margin-left: 3px;
     }
 
     .vue-typer {
