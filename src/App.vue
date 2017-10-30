@@ -12,14 +12,19 @@
                 <v-spacer></v-spacer>
 
 
-                <v-btn flat dark class="opts">para clientes</v-btn>
-                <v-btn flat dark class="opts" @click.native.stop="dialog_form = !dialog_form">Se parte de nosotros</v-btn>
+                <v-btn flat dark class="opts">Con&oacute;cenos</v-btn>
+                <v-btn flat dark class="opts">Nuestros Proyectos</v-btn>
+                <v-btn flat dark class="opts">Cont&aacute;ctanos</v-btn>
+                <!-- <v-btn flat dark class="opts">para clientes</v-btn> -->
+                
+                <!-- <v-btn flat dark class="opts" @click.native.stop="dialog_form = !dialog_form">Se parte de nosotros</v-btn> -->
+                <v-btn outline style="color: #22dea1" flat dark class="opts" @click.native.stop="sidebar = !sidebar">Se parte de nosotros</v-btn>
 
-                <v-btn outline style="color: #22dea1">
+                <!-- <v-btn outline style="color: #22dea1">
                     Ingresa
                     &nbsp;
                     <v-icon class="fa fa-github"></v-icon>
-                </v-btn>
+                </v-btn> -->
 
                 <!--
                 <v-btn icon>
@@ -63,23 +68,7 @@
                 </v-container>
 
             </main>
-            <v-dialog v-model="dialog_form" 
-                    fullscreen 
-                    transition="dialog-bottom-transition" 
-                    :overlay="false">
-
-                    <div>
-                        <form-body 
-                            class="dialog_background" 
-                            :dialog="dialog_form" 
-                            @clicked="onClickCloseDialog">
-                        </form-body>
-                    </div>
-                <!-- <v-card>
-                    <v-card-text> HOLA </v-card-text>
-                </v-card> -->
-            </v-dialog>
-
+            <sidebar :open="sidebar" @update-sidebar-open="onSidebarChange" transition="slide-x-transition"></sidebar>
             <v-footer class="pa-3" style="background-color: #1b1b21; color: white; font-family: Quicksand,Roboto,serif; font-weight: 500;">
 
                 <v-spacer></v-spacer>
@@ -101,18 +90,20 @@
     import 'particles.js'
     import CCLogo from './components/Logo'
     import CCConsole from './components/ConsoleEffect'
-    import FormBody from './components/FormBody'
+    // import FormBody from './components/FormBody'
+    import Sidebar from './components/Sidebar'
 
     export default {
         components: {
             CCLogo,
             VueTyper,
             CCConsole,
-            FormBody
+            Sidebar
         },
 
         data () {
             return {
+                sidebar: false,
                 dialog_form: false
             }
         },
@@ -126,6 +117,9 @@
             },
             onClickCloseDialog: function (value) {
                 this.dialog_form = value
+            },
+            onSidebarChange: function(value) {
+                this.sidebar = value
             }
         },
 
