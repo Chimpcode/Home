@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="text-xs-center mt-5">
-      <v-btn class="primary black--text" @click.native.stop="send_info"> enviar</v-btn>
+      <v-btn class="primary black--text" @click.native.stop="send_info()"> enviar</v-btn>
     </div>
     
   </div> 
@@ -87,6 +87,8 @@ export default {
             // err
             this.emit_snackbar("Ah ocurrido un problema, por favor intenta de nuevo")
           })
+        } else {
+          console.log("undefined fields")
         }
         
 
