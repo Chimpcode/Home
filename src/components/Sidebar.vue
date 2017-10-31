@@ -89,7 +89,7 @@ export default {
 
           this.$http.post('http://localhost:8079/developers', submit_request)
           .then(function(result) {
-            this.emit_snackbar(result.message)
+            this.emit_snackbar(result.data.message)
           })
           .catch(function(err) {
             // err
