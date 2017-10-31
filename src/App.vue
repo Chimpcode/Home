@@ -135,10 +135,8 @@
             },
             handleScroll: function(e) {
                 if (window.scrollY > 100) {
-                    console.log("> 100")
                     this.transparentOn = false
                 } else {
-                    console.log(" no")
                     this.transparentOn = true
                 }
             }

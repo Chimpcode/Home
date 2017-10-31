@@ -87,7 +87,11 @@ export default {
               }
           })
 
-          this.$http.post('http://localhost:8079/developers', submit_request)
+          let api_url = "localhost"
+          if (process.env.NODE_ENV === 'production') {
+            api_url = "13.90.253.208"
+          }
+          this.$http.post('http://'+api_url+':8079/developers', submit_request)
           .then(function(result) {
             this.emit_snackbar(result.data.message)
           })
