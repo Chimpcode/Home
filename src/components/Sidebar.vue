@@ -69,15 +69,23 @@ export default {
          this.$emit("update-sidebar-open", false) ;
       },
       send_info: function() {
+
         if(this.inputs[0].value !== undefined && 
            this.inputs[1].value !== undefined && 
-           this.inputs[2].value !== undefined) 
-        {
+           this.inputs[2].value !== undefined) {
+
           let submit_request = {
             name: this.inputs[0].value,
             email: this.inputs[1].value,
-            phonenumber: this.inputs[2].value
+            phonenumber: this.inputs[2].value,
+            developertype: []
           }
+
+          this.skills.map(function (kind) {
+              if (kind.value === true) {
+                  submit_request.developertype.push(kind.label)
+              }
+          })
 
           this.$http.post('http://localhost:8079/developers', submit_request)
           .then(function(result) {
