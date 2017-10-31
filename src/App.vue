@@ -13,7 +13,11 @@
                     <v-btn flat dark class="opts">Cont&aacute;ctanos</v-btn>
                     <v-btn outline style="color: #22dea1" flat dark class="opts" @click.native.stop="sidebar = !sidebar">Se parte de nosotros</v-btn>
                 </v-toolbar>
-                <sidebar :open="sidebar" @update-sidebar-open="onSidebarChange" transition="slide-x-transition"></sidebar>
+                <sidebar :open="sidebar" 
+                    @update-sidebar-open="onSidebarChange" 
+                    transition="slide-x-transition",
+                    @on-info-submission="onSendSubmission">
+                </sidebar>
                 <main>
                     <v-container>
                         <cc-logo id="logo"></cc-logo>
@@ -71,7 +75,16 @@
                     </v-flex>
                 </v-layout>
             </v-container>
-
+            <v-snackbar
+                :timeout="5000"
+                class="snackbar_info"
+                :multi-line="true"
+                :vertical="true"
+                v-model="snackbar_result"
+                >
+                <span>{{ snackbar_text }}</span>
+                <v-btn dark flat @click.native="snackbar_result = false">Close</v-btn>
+            </v-snackbar>
         </v-app>
     </div>
 </template>
@@ -97,7 +110,9 @@
                 sidebar: false,
                 dialog_form: false,
                 istoolbarfixed: true,
-                transparentOn: true
+                transparentOn: true,
+                snackbar_result: false,
+                snackbar_text: 'lorem ipsum SDASDASDSA Asdasdasd asdasdas asdasdasd'
             }
         },
 
@@ -113,6 +128,10 @@
             },
             onSidebarChange: function(value) {
                 this.sidebar = value
+            },
+            onSendSubmission: function(message) {
+                this.snackbar_result = true
+                this.snackbar_text = message
             },
             handleScroll: function(e) {
                 if (window.scrollY > 100) {
@@ -206,7 +225,13 @@
         // background: url("../public/noise.gif") repeat;
         // background-blend-mode: multiply;
     }
-
+    .snackbar_info{
+        background: #111f32;
+        
+    }
+    .snackbar_info span {
+        color: #22dea1 !important;
+    }
     .cc-footer {
         background-color: #1b1b21 !important;
         color: white;

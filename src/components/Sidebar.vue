@@ -21,7 +21,7 @@
           class="input-sidebar"
           :label="item.label"
           v-model="item.value"
-          id="testing"
+          id="input"
         ></v-text-field>
       </div>
 
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="text-xs-center mt-5">
-      <v-btn class="primary black--text"> enviar</v-btn>
+      <v-btn class="primary black--text" @click.native.stop="send_info"> enviar</v-btn>
     </div>
     
   </div> 
@@ -67,6 +67,32 @@ export default {
   methods:{
       updateSidebar: function(event){
          this.$emit("update-sidebar-open", false) ;
+      },
+      send_info: function() {
+        if(this.inputs[0].value !== undefined && 
+           this.inputs[1].value !== undefined && 
+           this.inputs[2].value !== undefined) 
+        {
+          let submit_request = {
+            name: this.inputs[0].value,
+            email: this.inputs[1].value,
+            phonenumber: this.inputs[2].value
+          }
+
+          this.$http.post('http://localhost:8079/developers', submit_request)
+          .then(function(result) {
+            this.emit_snackbar(result.message)
+          })
+          .catch(function(err) {
+            // err
+            this.emit_snackbar("Ah ocurrido un problema, por favor intenta de nuevo")
+          })
+        }
+        
+
+      },
+      emit_snackbar: function(message) {
+        this.$emit("on-info-submission", message)
       }
   }
 }
